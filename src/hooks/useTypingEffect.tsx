@@ -29,7 +29,6 @@ export const useTypingEffect = ({
 
       if (isDeleting && displayText === '') {
         setIsDeleting(false);
-        setLoopIndex((prev) => (prev + 1) % 1);
         return;
       }
 

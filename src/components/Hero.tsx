@@ -76,8 +76,7 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.a
-                href="/resume-pamu-sai.pdf"
-                download
+                href="/resume"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-gradient-primary text-primary-foreground rounded-lg font-semibold shadow-card hover:shadow-glow transition-all duration-300"
@@ -141,9 +140,6 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-hero opacity-20" />
               </div>
               
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-primary rounded-full opacity-20 blur-xl animate-pulse" />
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-glow rounded-full opacity-15 blur-2xl animate-pulse" />
             </motion.div>
           </motion.div>
         </div>
