@@ -1,11 +1,9 @@
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
-import { SiReact, SiNodedotjs, SiMongodb, SiTailwindcss, SiJavascript, SiExpress } from 'react-icons/si';
-import ProjectDetail from './ProjectDetail';
+import { Eye, ExternalLink, X } from 'lucide-react';
 
 const ProjectsNew = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [expandedProject, setExpandedProject] = useState(null);
 
   // Project images - using placeholder images
   const projectImages = {
@@ -132,135 +130,150 @@ const ProjectsNew = () => {
     }
   ];
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
+  const handleCardClick = (projectId) => {
+    setExpandedProject(projectId);
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
+  const handleCloseCard = (e) => {
+    e.stopPropagation();
+    setExpandedProject(null);
   };
 
   return (
     <>
       <section id="projects" className="py-20">
         <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-4xl font-bold mb-4">
-              Featured <span className="gradient-text">Projects</span>
+              My <span className="gradient-text">Projects</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               A showcase of my recent work and personal projects that demonstrate my skills and passion for web development
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {projects.map((project) => (
-              <motion.div
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div
                 key={project.id}
-                variants={itemVariants}
-                whileHover={{ y: -10 }}
-                onClick={() => setSelectedProject(project)}
-                className="group relative bg-card rounded-xl overflow-hidden shadow-card hover:shadow-glow transition-all duration-300 cursor-pointer"
+                className={`group relative bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-elegant transition-all duration-300 cursor-pointer hover:-translate-y-2 animate-fade-in ${
+                  expandedProject === project.id ? 'z-50' : ''
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => handleCardClick(project.id)}
               >
-                {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-hero opacity-0 group-hover:opacity-80 transition-opacity duration-300" />
-                  
-                  {/* Overlay with links */}
-                  <div className="absolute inset-0 flex items-center justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <motion.a
-                      href={project.links.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-3 bg-card rounded-full text-foreground hover:text-primary transition-colors duration-300"
-                    >
-                      <FaExternalLinkAlt size={20} />
-                    </motion.a>
-                    <motion.a
-                      href={project.links.git}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={(e) => e.stopPropagation()}
-                      className="p-3 bg-card rounded-full text-foreground hover:text-primary transition-colors duration-300"
-                    >
-                      <FaGithub size={20} />
-                    </motion.a>
+                {/* Default Card View */}
+                <div className={`${expandedProject === project.id ? 'hidden' : 'block'} h-80`}>
+                  <div className="relative overflow-hidden h-48">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <Eye className="mx-auto mb-2 w-8 h-8 drop-shadow-lg" />
+                        <p className="font-semibold text-gray-100 drop-shadow-md text-lg">Click me</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-6 h-32 flex flex-col justify-center">
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
+                    <p className="text-muted-foreground text-sm">Click to view details</p>
                   </div>
                 </div>
 
-                {/* Project Info */}
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                    {project.description[0]}
-                  </p>
+                {/* Expanded Card View */}
+                {expandedProject === project.id && (
+                  <div
+                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                    onClick={() => setExpandedProject(null)}
+                  >
+                    <div
+                      className="bg-background/95 backdrop-blur-md border border-primary/20 rounded-lg p-6 overflow-y-auto max-h-full w-full max-w-2xl animate-scale-in"
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        background: 'rgba(0, 0, 0, 0.9)',
+                        backdropFilter: 'blur(20px)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                      }}
+                    >
+                       {/* Project Image */}
+                       <div className="relative mb-4">
+                         <img
+                           src={project.image}
+                           alt={project.title}
+                           className="w-full h-40 object-cover rounded-lg"
+                         />
+                         {/* Close Button positioned outside image */}
+                         <button
+                           onClick={handleCloseCard}
+                           className="absolute -top-2 -right-2 w-8 h-8 flex items-center justify-center bg-red-500 hover:bg-red-600 rounded-full transition-colors text-white shadow-lg z-10"
+                         >
+                           <X size={16} />
+                         </button>
+                       </div>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.skills.slice(0, 3).map((skill, index) => (
-                      <span
-                        key={index}
-                        className="px-2 py-1 bg-muted rounded-md text-xs font-medium text-muted-foreground"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                    {project.skills.length > 3 && (
-                      <span className="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs font-medium">
-                        +{project.skills.length - 3} more
-                      </span>
-                    )}
+                      {/* Project Title */}
+                      <h3 className="text-2xl font-bold mb-4 text-foreground">{project.title}</h3>
+
+                      {/* Description Points */}
+                      <div className="space-y-2 mb-6">
+                        {project.description.map((desc, idx) => (
+                          <div key={idx} className="flex items-start gap-2">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <p className="text-sm text-muted-foreground">{desc}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                       {/* Skills */}
+                       <div className="mb-6">
+                         <h4 className="text-lg font-semibold mb-3 text-primary">Skills</h4>
+                         <div className="flex flex-wrap gap-2">
+                           {project.skills.map((skill, idx) => (
+                             <span
+                               key={idx}
+                               className="px-3 py-1 text-sm bg-primary/20 text-primary font-medium rounded-full border border-primary/30 hover:bg-primary/30 transition-colors"
+                             >
+                               {skill}
+                             </span>
+                           ))}
+                         </div>
+                       </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-3">
+                        <a
+                          href={project.links.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink size={16} />
+                          View Project
+                        </a>
+                        <a
+                          href={project.links.git}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-background/50 hover:bg-background/70 text-foreground px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 border border-border"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaGithub size={16} />
+                          GitHub
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                )}
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
-
-      {/* Project Detail Modal */}
-      {selectedProject && (
-        <ProjectDetail
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
     </>
   );
 };

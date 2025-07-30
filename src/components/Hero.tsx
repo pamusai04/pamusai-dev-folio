@@ -50,14 +50,25 @@ const Hero = () => {
               <span className="gradient-text">Pamu Sai</span>
             </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl md:text-2xl text-muted-foreground h-8"
-            >
-              <span className="typing-cursor">{typingText}</span>
-            </motion.div>
+            {/* Animated Text */}
+            <div className="text-2xl md:text-3xl mb-4 h-12">
+              <div className="flex animate-fade-in">
+                {"I am a Web Developer...!".split('').map((char, index) => (
+                  <span
+                    key={index}
+                    className="text-primary font-semibold animate-bounce"
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                      animationDuration: '0.3s',
+                      animationIterationCount: 'infinite',
+                      animationDirection: 'alternate'
+                    }}
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                ))}
+              </div>
+            </div>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -95,28 +106,35 @@ const Hero = () => {
             </motion.div>
 
             {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="flex space-x-6"
-            >
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1.2 + index * 0.1, duration: 0.5 }}
-                  whileHover={{ scale: 1.2, y: -5 }}
-                  className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300"
-                >
-                  <social.icon />
-                </motion.a>
-              ))}
-            </motion.div>
+            <div className="flex gap-4 animate-fade-in" style={{ animationDelay: '0.9s' }}>
+              <a
+                href="https://linkedin.com/in/pamu-sai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
+                <FaLinkedin className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
+              </a>
+              
+              <a
+                href="https://github.com/pamusai04"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
+                <FaGithub className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
+              </a>
+              
+              <a
+                href="mailto:pamusai04102003@gmail.com"
+                className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
+                <FaEnvelope className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
+              </a>
+            </div>
           </motion.div>
 
           {/* Profile Image */}

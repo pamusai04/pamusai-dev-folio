@@ -1,185 +1,238 @@
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
-import Header from './Header';
+import React from 'react';
+import { FaDownload, FaArrowLeft, FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Resume = () => {
-  const socialLinks = [
-    {
-      icon: FaLinkedin,
-      href: 'https://linkedin.com/in/pamusai',
-      label: 'LinkedIn',
-      color: '#0077B5'
-    },
-    {
-      icon: FaGithub,
-      href: 'https://github.com/pamusai',
-      label: 'GitHub',
-      color: '#333'
-    },
-    {
-      icon: FaEnvelope,
-      href: 'mailto:pai04102003@gmail.com',
-      label: 'Email',
-      color: '#EA4335'
-    }
-  ];
+  const navigate = useNavigate();
+
+  const downloadResume = () => {
+    window.open('https://drive.google.com/file/d/1KQCWZynuMI1uXPxS-n2GOxmN3UrarvzU/view?usp=drive_link', '_blank');
+  };
 
   return (
-    <div className="dark min-h-screen bg-background text-foreground">
-      <Header />
-      <div className="pt-20">
-      <div className="container mx-auto px-6 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
-        >
-          {/* Header */}
-          <div className="text-center mb-12">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-4xl md:text-5xl font-bold mb-4"
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Header */}
+      <header className="bg-card border-b border-border py-4 animate-fade-in">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 text-primary hover:text-primary-glow transition-colors hover:-translate-x-1 duration-300"
             >
-              <span className="gradient-text">Pamu Sai</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-xl text-muted-foreground mb-6"
-            >
-              Full Stack Web Developer
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
-            >
-              <span className="text-muted-foreground">📧 pamusai04102003@gmail.com</span>
-              <span className="text-muted-foreground">📱 +91-7780489038</span>
-            </motion.div>
-            
-            {/* Download Resume Button */}
-            <motion.a
-              href="https://drive.google.com/file/d/1KQCWZynuMI1uXPxS-n2GOxmN3UrarvzU/view?usp=drive_link"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center space-x-2 px-8 py-3 bg-gradient-primary text-primary-foreground rounded-lg font-semibold shadow-card hover:shadow-glow transition-all duration-300"
+              <FaArrowLeft />
+              Back to Portfolio
+            </button>
+            <button
+              onClick={downloadResume}
+              className="bg-gradient-primary text-white px-4 py-2 rounded-lg font-semibold hover:scale-105 transition-transform duration-300 flex items-center gap-2"
             >
               <FaDownload />
-              <span>Download Resume</span>
-            </motion.a>
+              Download PDF
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Resume Content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-4xl mx-auto bg-card rounded-lg shadow-lg overflow-hidden animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          {/* Header Section */}
+          <div className="bg-gradient-primary text-white p-8">
+            <h1 className="text-4xl font-bold mb-2 text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              SAI PAMU
+            </h1>
+            <p className="text-xl mb-4 text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              Portfolio
+            </p>
+            
+            {/* Contact Info */}
+            <div className="grid md:grid-cols-2 gap-4 text-sm animate-fade-in" style={{ animationDelay: '0.5s' }}>
+              <div className="flex items-center gap-2">
+                <FaGithub />
+                <span>Github</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaEnvelope />
+                <span>pamusai04102003@gmail.com</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaPhone />
+                <span>+91-7780489038</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaLinkedin />
+                <span>linkedin.com</span>
+              </div>
+            </div>
           </div>
 
-          {/* Resume Sections */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="space-y-12"
-          >
+          <div className="p-8 space-y-8">
             {/* Education */}
-            <section className="bg-card rounded-xl p-8 shadow-card">
-              <h2 className="text-2xl font-bold mb-6 gradient-text">Education</h2>
-              <div className="space-y-4">
-                <div className="border-l-4 border-primary pl-6">
-                  <h3 className="text-lg font-semibold">B.Tech Computer Science & Engineering</h3>
-                  <p className="text-muted-foreground">BESTIU • 2021-2025 • CGPA: 8.14</p>
-                </div>
-                <div className="border-l-4 border-primary/60 pl-6">
-                  <h3 className="text-lg font-semibold">Intermediate (XII)</h3>
-                  <p className="text-muted-foreground">A.P Model JR College • 2021 • 7.21%</p>
-                </div>
-                <div className="border-l-4 border-primary/40 pl-6">
-                  <h3 className="text-lg font-semibold">Secondary (X)</h3>
-                  <p className="text-muted-foreground">Z.P High School • 2019 • 8.8 CGPA</p>
-                </div>
+            <section className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
+              <h2 className="text-2xl font-bold text-primary mb-4 border-b-2 border-primary pb-2">
+                EDUCATION
+              </h2>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-2 px-4 font-semibold">Degree</th>
+                      <th className="text-left py-2 px-4 font-semibold">Specialization</th>
+                      <th className="text-left py-2 px-4 font-semibold">Institute</th>
+                      <th className="text-left py-2 px-4 font-semibold">Year</th>
+                      <th className="text-left py-2 px-4 font-semibold">CGPA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-border hover:bg-muted/20 transition-colors">
+                      <td className="py-2 px-4">B.Tech</td>
+                      <td className="py-2 px-4">Computer Science & Engineering</td>
+                      <td className="py-2 px-4">BESTIU</td>
+                      <td className="py-2 px-4">2021-2025</td>
+                      <td className="py-2 px-4">8.24</td>
+                    </tr>
+                    <tr className="border-b border-border hover:bg-muted/20 transition-colors">
+                      <td className="py-2 px-4">Intermediate(XII)</td>
+                      <td className="py-2 px-4">Physics, Chemistry, & Mathematics</td>
+                      <td className="py-2 px-4">A.P Model JR college</td>
+                      <td className="py-2 px-4">2021</td>
+                      <td className="py-2 px-4">7.21</td>
+                    </tr>
+                    <tr className="border-b border-border hover:bg-muted/20 transition-colors">
+                      <td className="py-2 px-4">Secondary(X)</td>
+                      <td className="py-2 px-4">-</td>
+                      <td className="py-2 px-4">Z.P High School</td>
+                      <td className="py-2 px-4">2019</td>
+                      <td className="py-2 px-4">8.8</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </section>
 
             {/* Technical Skills */}
-            <section className="bg-card rounded-xl p-8 shadow-card">
-              <h2 className="text-2xl font-bold mb-6 gradient-text">Technical Skills</h2>
-              <div className="grid md:grid-cols-2 gap-6">
+            <section className="animate-fade-in" style={{ animationDelay: '0.7s' }}>
+              <h2 className="text-2xl font-bold text-primary mb-4 border-b-2 border-primary pb-2">
+                TECHNICAL SKILLS
+              </h2>
+              <div className="space-y-3">
                 <div>
-                  <h3 className="text-lg font-semibold mb-3">Programming Languages</h3>
-                  <p className="text-muted-foreground">C++, Java, JavaScript</p>
+                  <span className="font-semibold">• Programming Languages:</span>
+                  <span className="text-muted-foreground ml-2">C++, Java, JavaScript</span>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-3">Frontend Technologies</h3>
-                  <p className="text-muted-foreground">HTML, CSS, Tailwind CSS, ReactJS, JavaScript, Bootstrap, TypeScript</p>
+                  <span className="font-semibold">• Frontend Technologies:</span>
+                  <span className="text-muted-foreground ml-2">HTML, CSS, Tailwind CSS, ReactJS, JavaScript, Bootstrap, TypeScript</span>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-3">Backend Technologies</h3>
-                  <p className="text-muted-foreground">Node.js, Express.js, RESTful APIs</p>
+                  <span className="font-semibold">• Backend Technologies:</span>
+                  <span className="text-muted-foreground ml-2">Node.js, Express.js, RESTful APIs</span>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-3">Databases & Tools</h3>
-                  <p className="text-muted-foreground">SQL, MongoDB, Git (Version Control)</p>
+                  <span className="font-semibold">• Databases & Tools:</span>
+                  <span className="text-muted-foreground ml-2">SQL, MongoDB, Git (Version Control)</span>
+                </div>
+                <div>
+                  <span className="font-semibold">• Data Structures & Algorithms:</span>
+                  <span className="text-muted-foreground ml-2">Strong understanding and implementation in C++</span>
+                </div>
+              </div>
+            </section>
+
+            {/* Projects */}
+            <section className="animate-fade-in" style={{ animationDelay: '0.8s' }}>
+              <h2 className="text-2xl font-bold text-primary mb-4 border-b-2 border-primary pb-2">
+                PROJECTS
+              </h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-xl font-semibold">• Ride-Sharing (Full-Stack Web Application) [College Project]</h3>
+                  <ul className="text-muted-foreground mt-2 space-y-1 ml-4">
+                    <li>◦ Created a multi-role platform (User/Driver/Admin) with MySQL database for managing ride bookings and approvals.</li>
+                    <li>◦ Implemented driver onboarding with document uploads (license, vehicle details) and admin approval workflow.</li>
+                    <li>◦ Developed user features: ride search, booking system, and driver matching based on location/city.</li>
+                    <li>◦ Built secure authentication for all roles with form validations (email, mobile, password strength)</li>
+                    <li>◦ <span className="font-semibold">Tech Stack:</span> PHP, MySQL, JavaScript, Bootstrap, HTML/CSS</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">• Social Media Application (Full-Stack Web Application) [Self Project]</h3>
+                  <ul className="text-muted-foreground mt-2 space-y-1 ml-4">
+                    <li>◦ <span className="font-semibold">User Management:</span> Implemented secure authentication (JWT), registration, login, and password recovery.</li>
+                    <li>◦ <span className="font-semibold">Post Interactions:</span> Developed CRUD operations for posts (create, edit, delete) and engagement features (likes, comments).</li>
+                    <li>◦ <span className="font-semibold">Profile System:</span> Designed user profiles with customizable details and activity tracking.</li>
+                    <li>◦ <span className="font-semibold">Backend Security:</span> Built a secure Node.js API with MongoDB for data storage, ensuring protected user operations.</li>
+                    <li>◦ <span className="font-semibold">Tech Stack:</span> React.js, Node.js, Express, MongoDB, JWT, RESTful APIs</li>
+                  </ul>
                 </div>
               </div>
             </section>
 
             {/* Work Experience */}
-            <section className="bg-card rounded-xl p-8 shadow-card">
-              <h2 className="text-2xl font-bold mb-6 gradient-text">Work Experience</h2>
-              <div className="border-l-4 border-primary pl-6">
-                <h3 className="text-lg font-semibold">Web Developer Intern</h3>
-                <p className="text-muted-foreground mb-2">GeoInfy Solutions • Sep-Dec 2023</p>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>Developed interactive WebGIS applications using Leaflet.js and OpenLayers</li>
-                  <li>Built efficient geospatial data management systems with GeoJSON, MySQL, and PHP</li>
-                  <li>Designed intuitive user interfaces with custom map controls</li>
+            <section className="animate-fade-in" style={{ animationDelay: '0.9s' }}>
+              <h2 className="text-2xl font-bold text-primary mb-4 border-b-2 border-primary pb-2">
+                WORK EXPERIENCE/INTERNSHIPS
+              </h2>
+              <div>
+                <h3 className="text-xl font-semibold">• Web Developer Intern [GeoInfy Solutions]</h3>
+                <p className="text-primary font-medium mb-2">Sep-Dec 2023</p>
+                <ul className="text-muted-foreground space-y-1 ml-4">
+                  <li>◦ Developed interactive WebGIS applications using Leaflet.js and OpenLayers for geospatial data visualization.</li>
+                  <li>◦ Built efficient geospatial data management systems with GeoJSON, MySQL, and PHP, for storage and dynamic display.</li>
+                  <li>◦ Designed intuitive user interfaces with custom map controls and interactive layer toggles.</li>
+                  <li>◦ <span className="font-semibold">Tech Stack:</span> JavaScript, HTML/CSS, Leaflet.js, GeoJSON, MySQL, PHP.</li>
                 </ul>
               </div>
             </section>
 
             {/* Achievements */}
-            <section className="bg-card rounded-xl p-8 shadow-card">
-              <h2 className="text-2xl font-bold mb-6 gradient-text">Achievements</h2>
-              <div className="border-l-4 border-primary pl-6">
-                <h3 className="text-lg font-semibold">Solved 200+ Coding Problems</h3>
-                <p className="text-muted-foreground mb-2">Problem Solving with 90% Accuracy</p>
-                <p className="text-muted-foreground">Practiced on LeetCode, Code 360 by Coding Ninjas and GeeksforGeeks, focusing on Data Structures and Algorithm optimization.</p>
+            <section className="animate-fade-in" style={{ animationDelay: '1s' }}>
+              <h2 className="text-2xl font-bold text-primary mb-4 border-b-2 border-primary pb-2">
+                ACHIEVEMENTS
+              </h2>
+              <div>
+                <h3 className="text-xl font-semibold">• Solved 200+ Coding Problems with 90% Accuracy [Problem Solving]</h3>
+                <ul className="text-muted-foreground mt-2 space-y-1 ml-4">
+                  <li>◦ Practiced and solved over 200 coding problems on platforms like LeetCode, Code 360 by Coding Ninjas and GeeksforGeeks, focusing on Data Structures and Algorithm optimization.</li>
+                  <li>◦ <span className="font-semibold">LeetCode:</span> SaiLeetCode</li>
+                  <li>◦ <span className="font-semibold">GeeksforGeeks:</span> SaiGFG</li>
+                  <li>◦ <span className="font-semibold">Code 360 by Coding Ninjas:</span> SaiCode360</li>
+                </ul>
               </div>
             </section>
-          </motion.div>
+          </div>
 
           {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="flex justify-center space-x-6 mt-12"
-          >
-            {socialLinks.map((social, index) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2 + index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.2, y: -5 }}
-                className="p-4 rounded-full text-2xl transition-all duration-300"
-                style={{ 
-                  backgroundColor: `${social.color}20`,
-                  color: social.color
-                }}
-              >
-                <social.icon />
-              </motion.a>
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
+          <div className="flex justify-center gap-4 p-8 animate-fade-in" style={{ animationDelay: '1.1s' }}>
+            <a
+              href="https://linkedin.com/in/pamu-sai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-2 bg-primary/10"
+            >
+              <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
+              <FaLinkedin className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
+            </a>
+            
+            <a
+              href="https://github.com/pamusai04"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-2 bg-primary/10"
+            >
+              <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
+              <FaGithub className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
+            </a>
+            
+            <a
+              href="mailto:pamusai04102003@gmail.com"
+              className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-2 bg-primary/10"
+            >
+              <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
+              <FaEnvelope className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
