@@ -6,8 +6,8 @@ import profileImage from '../assets/profile-image.jpg';
 const Hero = () => {
   const typingText = useTypingEffect({
     text: "I am a Web Developer...!",
-    speed: 150,
-    deleteSpeed: 100,
+    speed: 10,
+    deleteSpeed: 10,
     pauseTime: 2000
   });
 
