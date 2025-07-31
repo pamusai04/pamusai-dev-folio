@@ -41,29 +41,7 @@ const Resume = () => {
             <h1 className="text-4xl font-bold mb-2 text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
               SAI PAMU
             </h1>
-            <p className="text-xl mb-4 text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              Portfolio
-            </p>
             
-            {/* Contact Info */}
-            <div className="grid md:grid-cols-2 gap-4 text-sm animate-fade-in" style={{ animationDelay: '0.5s' }}>
-              <div className="flex items-center gap-2">
-                <FaGithub />
-                <span>Github</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaEnvelope />
-                <span>pamusai04102003@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaPhone />
-                <span>+91-7780489038</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FaLinkedin />
-                <span>linkedin.com</span>
-              </div>
-            </div>
           </div>
 
           <div className="p-8 space-y-8">
@@ -89,7 +67,7 @@ const Resume = () => {
                       <td className="py-2 px-4">Computer Science & Engineering</td>
                       <td className="py-2 px-4">BESTIU</td>
                       <td className="py-2 px-4">2021-2025</td>
-                      <td className="py-2 px-4">8.24</td>
+                      <td className="py-2 px-4">8.14</td>
                     </tr>
                     <tr className="border-b border-border hover:bg-muted/20 transition-colors">
                       <td className="py-2 px-4">Intermediate(XII)</td>
@@ -117,24 +95,24 @@ const Resume = () => {
               </h2>
               <div className="space-y-3">
                 <div>
-                  <span className="font-semibold">• Programming Languages:</span>
-                  <span className="text-muted-foreground ml-2">C++, Java, JavaScript</span>
+                  <span className="font-semibold">• Programming Languages : </span>
+                  <span className="text-muted-foreground ml-2"> C++, Java, JavaScript</span>
                 </div>
                 <div>
-                  <span className="font-semibold">• Frontend Technologies:</span>
-                  <span className="text-muted-foreground ml-2">HTML, CSS, Tailwind CSS, ReactJS, JavaScript, Bootstrap, TypeScript</span>
+                  <span className="font-semibold">• Frontend Technologies : </span>
+                  <span className="text-muted-foreground ml-2"> HTML, CSS, Tailwind CSS, ReactJS, JavaScript, Bootstrap, TypeScript</span>
                 </div>
                 <div>
-                  <span className="font-semibold">• Backend Technologies:</span>
-                  <span className="text-muted-foreground ml-2">Node.js, Express.js, RESTful APIs</span>
+                  <span className="font-semibold">• Backend Technologies : </span>
+                  <span className="text-muted-foreground ml-2"> Node.js, Express.js, RESTful APIs</span>
                 </div>
                 <div>
-                  <span className="font-semibold">• Databases & Tools:</span>
-                  <span className="text-muted-foreground ml-2">SQL, MongoDB, Git (Version Control)</span>
+                  <span className="font-semibold">• Databases & Tools : </span>
+                  <span className="text-muted-foreground ml-2"> SQL, MongoDB, Git (Version Control)</span>
                 </div>
                 <div>
-                  <span className="font-semibold">• Data Structures & Algorithms:</span>
-                  <span className="text-muted-foreground ml-2">Strong understanding and implementation in C++</span>
+                  <span className="font-semibold">• Data Structures & Algorithms : </span>
+                  <span className="text-muted-foreground ml-2"> Strong understanding and implementation in C++</span>
                 </div>
               </div>
             </section>
@@ -146,23 +124,28 @@ const Resume = () => {
               </h2>
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold">• Ride-Sharing (Full-Stack Web Application) [College Project]</h3>
+                  <h3 className="text-xl font-semibold">• BelleSpot (Full-Stack Web Application) [self Projec]</h3>
                   <ul className="text-muted-foreground mt-2 space-y-1 ml-4">
-                    <li>◦ Created a multi-role platform (User/Driver/Admin) with MySQL database for managing ride bookings and approvals.</li>
-                    <li>◦ Implemented driver onboarding with document uploads (license, vehicle details) and admin approval workflow.</li>
-                    <li>◦ Developed user features: ride search, booking system, and driver matching based on location/city.</li>
-                    <li>◦ Built secure authentication for all roles with form validations (email, mobile, password strength)</li>
-                    <li>◦ <span className="font-semibold">Tech Stack:</span> PHP, MySQL, JavaScript, Bootstrap, HTML/CSS</li>
+                    <li>◦ BelleSpot is a Beauty Parlors and Salons Discovery Platform.</li>
+                    <li>◦ Developed a full-stack, geolocation-based platform enabling users to discover nearby salons through
+real-time availability tracking and efficient location-based search.</li>
+                    <li>◦ Implemented secure JWT authentication with dual-role system (users browse services, providers
+manage shops via CRUD operations).</li>
+                    <li>◦ Built an interactive UI with Tailwind CSS showcasing live closing times, customer ratings, and home-
+service availability status</li>
+                    <li>◦ <span className="font-semibold">Tech Stack:</span>  JavaScript, React, Node.js, Express, MongoDB, Tailwind CSS, HTML</li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">• Social Media Application (Full-Stack Web Application) [Self Project]</h3>
+                  <h3 className="text-xl font-semibold">• CodeQuest (Full-Stack Web Application) [college Project]</h3>
                   <ul className="text-muted-foreground mt-2 space-y-1 ml-4">
-                    <li>◦ <span className="font-semibold">User Management:</span> Implemented secure authentication (JWT), registration, login, and password recovery.</li>
-                    <li>◦ <span className="font-semibold">Post Interactions:</span> Developed CRUD operations for posts (create, edit, delete) and engagement features (likes, comments).</li>
-                    <li>◦ <span className="font-semibold">Profile System:</span> Designed user profiles with customizable details and activity tracking.</li>
-                    <li>◦ <span className="font-semibold">Backend Security:</span> Built a secure Node.js API with MongoDB for data storage, ensuring protected user operations.</li>
-                    <li>◦ <span className="font-semibold">Tech Stack:</span> React.js, Node.js, Express, MongoDB, JWT, RESTful APIs</li>
+                    <li>◦ Built an online coding platform with Judge0 integration for executing code in C++/Java/JavaScript.</li>
+                    <li>◦ Developed advanced filtering by difficulty (Easy /Medium /Hard) and topics (Arrays, LinkedList,
+Graphs, DP).</li>
+                    <li>◦ Implemented admin panel for problem management (create/update/delete problems and test cases).</li>
+                    <li>◦ Implemented comprehensive code evaluation with public test cases (visible during practice runs) and
+hidden test cases (executed upon final submission)</li>
+                    <li>◦ Tech Stack: JavaScript, React.js, Node.js, Express, MongoDB, Tailwind CSS, HTML</li>
                   </ul>
                 </div>
               </div>

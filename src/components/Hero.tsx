@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { useTypingEffect } from '../hooks/useTypingEffect';
-import profileImage from '../assets/profile-image.jpg';
+import profileImage from '../assets/profile.jpg';
 
 const Hero = () => {
   const typingText = useTypingEffect({
@@ -10,7 +10,8 @@ const Hero = () => {
     deleteSpeed: 10,
     pauseTime: 2000
   });
-
+  const animatedText = "I am a Web Developer...!";
+  
   const socialLinks = [
     {
       icon: FaGithub,
@@ -51,24 +52,33 @@ const Hero = () => {
             </motion.h1>
 
             {/* Animated Text */}
-            <div className="text-2xl md:text-3xl mb-4 h-12">
-              <div className="flex animate-fade-in">
-                {"I am a Web Developer...!".split('').map((char, index) => (
-                  <span
-                    key={index}
-                    className="text-primary font-semibold animate-bounce"
-                    style={{
-                      animationDelay: `${index * 0.1}s`,
-                      animationDuration: '0.3s',
-                      animationIterationCount: 'infinite',
-                      animationDirection: 'alternate'
-                    }}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </span>
-                ))}
+              <div className="text-2xl md:text-3xl mb-4 h-12">
+                <motion.div
+                  className="flex"
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {animatedText.split('').map((char, index) => (
+                    <motion.span
+                      key={index}
+                      className="text-primary font-semibold"
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0 }
+                      }}
+                      transition={{
+                        delay: index * 0.1,
+                        duration: 0.3,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        repeatDelay: 2
+                      }}
+                    >
+                      {char === ' ' ? '\u00A0' : char}
+                    </motion.span>
+                  ))}
+                </motion.div>
               </div>
-            </div>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}

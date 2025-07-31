@@ -106,26 +106,7 @@ const Skills = () => {
           ))}
         </motion.div>
 
-        {/* Additional Skills */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-xl font-semibold mb-4">Additional Technologies</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {['TypeScript', 'Express.js', 'RESTful APIs', 'MySQL', 'Bootstrap', 'PHP', 'Leaflet.js', 'GeoJSON'].map((tech) => (
-              <span
-                key={tech}
-                className="px-4 py-2 bg-muted rounded-full text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors duration-300 cursor-default"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );
