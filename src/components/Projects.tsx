@@ -194,6 +194,26 @@ const Projects = () => {
           ))}
         </motion.div>
 
+        {/* View All Projects Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <motion.a
+            href="https://github.com/pamusai"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center space-x-2 px-8 py-3 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg font-semibold transition-all duration-300"
+          >
+            <FaGithub />
+            <span>View All Projects</span>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

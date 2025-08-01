@@ -1,17 +1,16 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import { useTypingEffect } from '../hooks/useTypingEffect';
-import profileImage from '../assets/profile.jpg';
+import profileImage from '../assets/profile-image.jpg';
 
 const Hero = () => {
   const typingText = useTypingEffect({
     text: "I am a Web Developer...!",
-    speed: 10,
-    deleteSpeed: 10,
+    speed: 150,
+    deleteSpeed: 100,
     pauseTime: 2000
   });
-  const animatedText = "I am a Web Developer...!";
-  
+
   const socialLinks = [
     {
       icon: FaGithub,
@@ -51,34 +50,14 @@ const Hero = () => {
               <span className="gradient-text">Pamu Sai</span>
             </motion.h1>
 
-            {/* Animated Text */}
-              <div className="text-2xl md:text-3xl mb-4 h-12">
-                <motion.div
-                  className="flex"
-                  initial="hidden"
-                  animate="visible"
-                >
-                  {animatedText.split('').map((char, index) => (
-                    <motion.span
-                      key={index}
-                      className="text-primary font-semibold"
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: { opacity: 1, y: 0 }
-                      }}
-                      transition={{
-                        delay: index * 0.1,
-                        duration: 0.3,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        repeatDelay: 2
-                      }}
-                    >
-                      {char === ' ' ? '\u00A0' : char}
-                    </motion.span>
-                  ))}
-                </motion.div>
-              </div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl md:text-2xl text-muted-foreground h-8"
+            >
+              <span className="typing-cursor">{typingText}</span>
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -97,7 +76,8 @@ const Hero = () => {
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.a
-                href="/resume"
+                href="/resume-pamu-sai.pdf"
+                download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 bg-gradient-primary text-primary-foreground rounded-lg font-semibold shadow-card hover:shadow-glow transition-all duration-300"
@@ -116,35 +96,28 @@ const Hero = () => {
             </motion.div>
 
             {/* Social Links */}
-            <div className="flex gap-4 animate-fade-in" style={{ animationDelay: '0.9s' }}>
-              <a
-                href="https://linkedin.com/in/pamu-sai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                <FaLinkedin className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
-              </a>
-              
-              <a
-                href="https://github.com/pamusai04"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                <FaGithub className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
-              </a>
-              
-              <a
-                href="mailto:pamusai04102003@gmail.com"
-                className="group w-14 h-14 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                <FaEnvelope className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
-              </a>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="flex space-x-6"
+            >
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.2 + index * 0.1, duration: 0.5 }}
+                  whileHover={{ scale: 1.2, y: -5 }}
+                  className="text-2xl text-muted-foreground hover:text-primary transition-all duration-300"
+                >
+                  <social.icon />
+                </motion.a>
+              ))}
+            </motion.div>
           </motion.div>
 
           {/* Profile Image */}
@@ -168,6 +141,9 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-hero opacity-20" />
               </div>
               
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-primary rounded-full opacity-20 blur-xl animate-pulse" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary-glow rounded-full opacity-15 blur-2xl animate-pulse" />
             </motion.div>
           </motion.div>
         </div>

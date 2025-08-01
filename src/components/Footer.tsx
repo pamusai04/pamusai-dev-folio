@@ -5,17 +5,17 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: FaGithub,
-      href: 'https://github.com/pamusai04',
+      href: 'https://github.com/pamusai',
       label: 'GitHub'
     },
     {
       icon: FaLinkedin,
-      href: 'https://www.linkedin.com/in/saipamu/',
+      href: 'https://linkedin.com/in/pamusai',
       label: 'LinkedIn'
     },
     {
       icon: FaEnvelope,
-      href: 'mailto:pamusai04102003@gmail.com',
+      href: 'mailto:pai04102003@gmail.com',
       label: 'Email'
     }
   ];
@@ -57,42 +57,28 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-foreground">Follow Me</h4>
             <div className="space-y-2">
               <p className="text-muted-foreground">
-                <span className="font-medium">Email :</span> pamusai04102003@gmail.com
+                <span className="font-medium">Email:</span> pai04102003@gmail.com
               </p>
               <p className="text-muted-foreground">
-                <span className="font-medium">Phone :</span> +91 7780489038
+                <span className="font-medium">Phone:</span> +91 7780489038
               </p>
             </div>
             
             {/* Social Links */}
-            <div className="flex gap-4 animate-fade-in" style={{ animationDelay: '0.9s' }}>
-              <a
-                href="https://linkedin.com/in/pamu-sai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group w-12 h-12 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                <FaLinkedin className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
-              </a>
-              
-              <a
-                href="https://github.com/pamusai04"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group w-12 h-12 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                <FaGithub className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
-              </a>
-              
-              <a
-                href="mailto:pamusai04102003@gmail.com"
-                className="group w-12 h-12 flex items-center justify-center text-foreground rounded-full transition-all duration-500 border-2 border-primary/40 hover:border-primary relative overflow-hidden hover:scale-110 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-primary/20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300" />
-                <FaEnvelope className="text-xl z-10 text-primary/60 group-hover:text-primary transition-colors duration-300" />
-              </a>
+            <div className="flex space-x-4">
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="text-muted-foreground hover:text-primary transition-colors duration-300"
+                >
+                  <social.icon size={20} />
+                </motion.a>
+              ))}
             </div>
           </div>
         </div>

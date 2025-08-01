@@ -36,8 +36,8 @@ const Contact = () => {
     {
       icon: FaEnvelope,
       label: 'Email',
-      value: 'pamusai04102003@gmail.com',
-      link: 'mailto:pamusai04102003@gmail.com'
+      value: 'pai04102003@gmail.com',
+      link: 'mailto:pai04102003@gmail.com'
     },
     {
       icon: FaPhone,
