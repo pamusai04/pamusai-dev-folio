@@ -156,7 +156,7 @@ const ProjectsNew = () => {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className={`group relative bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-elegant transition-all duration-300 cursor-pointer hover:-translate-y-2 animate-fade-in ${
+                className={`group relative bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-700/50 hover:border-primary/50 transition-all duration-500 cursor-pointer transform hover:-translate-y-3 hover:scale-105 animate-fade-in ${
                   expandedProject === project.id ? 'z-50' : ''
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -164,22 +164,101 @@ const ProjectsNew = () => {
               >
                 {/* Default Card View */}
                 <div className={`${expandedProject === project.id ? 'hidden' : 'block'} h-80`}>
-                  <div className="relative overflow-hidden h-48">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <Eye className="mx-auto mb-2 w-8 h-8 drop-shadow-lg" />
-                        <p className="font-semibold text-gray-100 drop-shadow-md text-lg">Click me</p>
+                  {/* Featured Badge */}
+                  {index < 2 && (
+                    <div className="absolute top-4 left-4 z-10">
+                      <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                        Featured
                       </div>
                     </div>
+                  )}
+                  
+                  {/* Analytics Chart Area */}
+                  <div className="relative h-32 p-4 bg-gradient-to-br from-slate-800/50 to-slate-900/50">
+                    {/* Mock analytics data */}
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex gap-4">
+                        <div className="text-center">
+                          <div className="text-xs text-slate-400">Total Impressions</div>
+                          <div className="text-lg font-bold text-green-400">17.6K</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xs text-slate-400">Average CTR</div>
+                          <div className="text-lg font-bold text-blue-400">1.3%</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xs text-slate-400">Avg Position</div>
+                          <div className="text-lg font-bold text-purple-400">25.2</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Mock Chart Lines */}
+                    <div className="absolute bottom-2 left-4 right-4 h-12">
+                      <svg className="w-full h-full" viewBox="0 0 200 40">
+                        <path
+                          d="M0,30 Q20,25 40,28 T80,22 T120,18 T160,15 T200,12"
+                          stroke="#10b981"
+                          strokeWidth="2"
+                          fill="none"
+                          className="opacity-60"
+                        />
+                        <path
+                          d="M0,35 Q20,32 40,30 T80,28 T120,25 T160,20 T200,18"
+                          stroke="#3b82f6"
+                          strokeWidth="2"
+                          fill="none"
+                          className="opacity-60"
+                        />
+                        <path
+                          d="M0,38 Q20,36 40,34 T80,32 T120,30 T160,28 T200,25"
+                          stroke="#8b5cf6"
+                          strokeWidth="2"
+                          fill="none"
+                          className="opacity-60"
+                        />
+                      </svg>
+                    </div>
                   </div>
-                  <div className="p-6 h-32 flex flex-col justify-center">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
-                    <p className="text-muted-foreground text-sm">Click to view details</p>
+                  
+                  {/* Project Info */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <p className="text-slate-300 text-sm mb-4 line-clamp-2">
+                      {project.description[0]}
+                    </p>
+                    
+                    {/* Tech Stack Pills */}
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {project.skills.slice(0, 3).map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2 py-1 text-xs bg-slate-700/50 text-slate-300 rounded-full border border-slate-600/50"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                      {project.skills.length > 3 && (
+                        <span className="px-2 py-1 text-xs bg-slate-700/50 text-slate-400 rounded-full border border-slate-600/50">
+                          +{project.skills.length - 3}
+                        </span>
+                      )}
+                    </div>
+                    
+                    {/* Action Icons */}
+                    <div className="flex gap-2">
+                      <div className="w-8 h-8 bg-slate-700/50 rounded-lg flex items-center justify-center border border-slate-600/50 hover:bg-primary/20 transition-colors">
+                        <Eye size={14} className="text-slate-400" />
+                      </div>
+                      <div className="w-8 h-8 bg-slate-700/50 rounded-lg flex items-center justify-center border border-slate-600/50 hover:bg-primary/20 transition-colors">
+                        <ExternalLink size={14} className="text-slate-400" />
+                      </div>
+                      <div className="w-8 h-8 bg-slate-700/50 rounded-lg flex items-center justify-center border border-slate-600/50 hover:bg-primary/20 transition-colors">
+                        <FaGithub size={14} className="text-slate-400" />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
